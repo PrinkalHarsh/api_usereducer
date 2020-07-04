@@ -31,7 +31,6 @@ const reducer = (state, action) => {
 };
 
 export const ApiCalling = () => {
-  const [data, setData] = useState([]);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   console.log('state', state);
@@ -41,9 +40,6 @@ export const ApiCalling = () => {
       .get('https://jsonplaceholder.typicode.com/posts/3')
       .then((response) => {
         dispatch({type: 'FETCH_SUCCESS', payload: response.data});
-        setData(state);
-        // console.log('payload', payload);
-        console.log('data', data);
       })
       .catch((error) => {
         dispatch({type: 'FETCH_ERROR'});
