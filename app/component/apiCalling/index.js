@@ -1,34 +1,8 @@
 import React, {useReducer, useEffect, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
+import {reducer, initialState} from '@reducer';
 import axios from 'axios';
 import styles from './style';
-
-const initialState = {
-  loading: true,
-  error: ' ',
-  post: {},
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'FETCH_SUCCESS':
-      return {
-        loading: false,
-        post: action.payload,
-        error: '',
-      };
-
-    case 'FETCH_ERROR':
-      return {
-        loading: false,
-        post: {},
-        error: 'something wrong',
-      };
-
-    default:
-      return state;
-  }
-};
 
 export const ApiCalling = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -58,12 +32,6 @@ export const ApiCalling = () => {
         )}
         {state.error ? state.error : null}
       </Text>
-
-      {/* <FlatList
-        data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({item}) => <Text> {item.title} </Text>}
-      /> */}
     </View>
   );
 };
